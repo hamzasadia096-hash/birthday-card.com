@@ -1,0 +1,68 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Birthday Card</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { background: linear-gradient(135deg,#a1f0ff,#dffbff,#ffffff); font-family:'Segoe UI',sans-serif; overflow-x:hidden; }
+    .float{animation:float 3s ease-in-out infinite}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+    .fade-in{animation:fadeIn 2s ease forwards;opacity:0}
+    @keyframes fadeIn{to{opacity:1}}
+    .hidden-page{display:none}
+    .btn-bounce{animation:bounce 2s infinite}
+    @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}/* LETTER */
+.letter{max-width:400px;margin:20px auto;background:white;padding:20px;border-radius:15px;box-shadow:0 10px 20px rgba(0,0,0,.1);opacity:0;transform:translateY(60px) scale(.8);display:none}
+@keyframes letterPop{0%{opacity:0;transform:translateY(60px) scale(.8)}60%{opacity:1;transform:translateY(-10px) scale(1.05)}100%{opacity:1;transform:translateY(0) scale(1)}}
+.show-letter{display:block;animation:letterPop 1s cubic-bezier(.2,.8,.2,1) forwards}
+.from-text{opacity:0;animation:fadeIn 2s ease forwards;animation-delay:1s}
+
+/* CAKE */
+.cake{position:relative;width:160px;height:100px;margin:40px auto 20px;background:linear-gradient(to bottom,#ff9ec4,#ff6fa5);border-radius:12px;box-shadow:0 8px 0 #d94f87,0 15px 25px rgba(0,0,0,.15);animation:float 3s ease-in-out infinite}
+.icing{position:absolute;top:-15px;left:0;width:100%;height:30px;background:#fff;border-radius:15px}
+.sprinkle{position:absolute;width:6px;height:10px;border-radius:2px;transform:rotate(20deg)}
+.sprinkle:nth-child(2){left:20%;top:-5px;background:#6bcBef}
+.sprinkle:nth-child(3){left:40%;top:-8px;background:#ff6b6b}
+.sprinkle:nth-child(4){left:60%;top:-6px;background:#9d4edd}
+.sprinkle:nth-child(5){left:75%;top:-4px;background:#00c897}
+.candle{width:12px;height:35px;background:repeating-linear-gradient(45deg,#fff,#fff 5px,#ff4d4d 5px,#ff4d4d 10px);position:absolute;top:-35px;left:50%;transform:translateX(-50%);border-radius:3px}
+.flame{width:14px;height:14px;background:radial-gradient(circle,yellow 20%,orange 60%,red 100%);border-radius:50%;position:absolute;top:-12px;left:50%;transform:translateX(-50%);animation:flicker .15s infinite alternate;box-shadow:0 0 10px orange,0 0 20px gold}
+@keyframes flicker{from{opacity:.5}to{opacity:1}}
+
+/* FINAL PAGE */
+.wish-card{max-width:500px;margin:40px auto;background:white;padding:30px;border-radius:20px;box-shadow:0 15px 30px rgba(0,0,0,.15);animation:fadeIn 2s forwards}
+
+  </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">  <!-- PAGE 1 -->  <div id="page1" class="bg-cyan-100 rounded-3xl shadow-2xl p-8 max-w-3xl w-full text-center">
+    <h1 class="text-4xl md:text-5xl font-bold text-gray-800 fade-in">TAYYABA is 18!</h1>
+    <p class="mt-4 text-gray-600 fade-in" style="animation-delay:1s">Today we celebrate a beautiful soul 💖</p>
+    <button onclick="goToCake()" class="mt-6 bg-green-700 text-white px-6 py-3 rounded-full shadow-lg btn-bounce">Start Celebration 🎂</button>
+  </div>  <!-- PAGE 2 -->  <div id="page2" class="hidden-page text-center">
+    <h2 class="text-3xl font-bold mb-6">Make a Wish ✨</h2>
+    <div class="cake mb-4">
+      <div class="icing"></div>
+      <div class="sprinkle"></div><div class="sprinkle"></div><div class="sprinkle"></div><div class="sprinkle"></div>
+      <div class="candle"><div id="flame" class="flame"></div></div>
+    </div>
+    <button onclick="blowCandles()" class="bg-pink-500 text-white px-6 py-2 rounded-full shadow-lg btn-bounce">Blow the Candle 💨</button><div id="letter" class="letter">
+  <h3 class="text-xl font-bold mb-2">Happy 18th Birthday TAYYABA 🎉</h3>
+  <p>May your life be filled with success, happiness, and endless smiles ✨</p>
+  <p class="mt-4 font-semibold from-text">From Student Ahmad 💙</p>
+
+  <button onclick="goToFinal()" class="mt-6 bg-purple-600 text-white px-5 py-2 rounded-full shadow-lg btn-bounce">Happy Birthday 🎉</button>
+</div>
+
+  </div>  <!-- PAGE 3 FINAL WISH -->  <div id="page3" class="hidden-page text-center">
+    <div class="wish-card">
+      <h2 class="text-3xl font-bold mb-4">Happy Birthday Dear Teacher 🌸</h2>
+      <p class="text-gray-700">On your special day, I just want to thank you for your guidance, patience, and kindness. A great teacher like you inspires students not only in studies but in life. May you always stay happy, healthy, and successful. Your lessons and support mean more than words can say.</p>
+      <p class="mt-4 font-semibold text-pink-600">With respect and best wishes,<br>Student Ahmad 💖</p>
+    </div>
+  </div>  <script>
+    function goToCake(){ page1.style.display='none'; page2.style.display='block'; }
+    function blowCandles(){ flame.style.display='none'; document.getElementById('letter').classList.add('show-letter'); }
+    function goToFinal(){ page2.style.display='none'; page3.style.display='block'; }
+  </script></body>
+</html>
